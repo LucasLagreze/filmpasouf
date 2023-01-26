@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
+import VideoPlayer from './component/video';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -14,13 +15,11 @@ export default function App() {
       return <Text>{error}</Text>
     }
     
-    console.log(response)
     return (
-      <FlatList
-        data={response.Chapters}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-        keyExtractor={item => item.pos}
-      />
+      <div>
+        <h1>Welcome to the Video Player</h1>
+        {<VideoPlayer videoUrl={response.Film.file_url} timeToJump={300} />}
+      </div>
     )
   }
 
