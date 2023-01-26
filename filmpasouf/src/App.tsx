@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
 import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
+import Chapter from './components/chapter/Chapter'
+import './App.css'
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
 
-  const getContent = () => {
+  const chapters = () => {
     if (isLoading) {
       return <ActivityIndicator size="large" />
     }
@@ -13,32 +16,27 @@ export default function App() {
     if (error) {
       return <Text>{error}</Text>
     }
+
+    let chapterList = response.Chapters.map((chapter: any) => {
+      return {
+        id: parseInt(chapter.pos),
+        title: chapter.title,
+        pos: parseInt(chapter.pos)
+      }
+    })
     
-    console.log(response)
     return (
       <FlatList
-        data={response.Chapters}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-        keyExtractor={item => item.pos}
+        data={chapterList}
+        renderItem={({ item }) => <Chapter id={item.id} title={item.title} pos={item.pos} onClick={(id) => {console.log(id)}} />}
+        keyExtractor={item => item.id}
       />
     )
   }
 
   return (
-    <View style={styles.container}>
-      {getContent()}
-      <StatusBar style="auto" />
+    <View>
+      {chapters()}
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
-
-
