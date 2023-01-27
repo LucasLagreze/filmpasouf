@@ -1,10 +1,9 @@
-import { StatusBar } from 'expo-status-bar'
-import { useState } from 'react'
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native'
+import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
 import VideoPlayer from './component/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
+import MapComponent from './component/map';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -28,8 +27,8 @@ export default function App() {
     
     return (
       <div>
-        <h1>Welcome to the Video Player</h1>
         {<VideoPlayer videoUrl={response.Film.file_url} timeToJump={300} />}
+        <MapComponent center={[45.1699981689, 1.5633200407]} zoom={13} />
         <FlatList
           data={chapterList}
           renderItem={({ item }) => <Chapter id={item.id} title={item.title} pos={item.pos} onClick={(id) => {console.log(id)}} />}
