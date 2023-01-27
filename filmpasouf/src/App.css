@@ -20,3 +20,8 @@
 .chapter__pos {
   margin: 0;
 }
+
+.leaflet-container {
+  width: 10wh; 
+  height: 30vh;
+}
