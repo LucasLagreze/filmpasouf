@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
 import VideoPlayer from './components/video/video';
@@ -7,6 +8,7 @@ import MapComponent from './components/map';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
+  const [chapterTime, setChapterTime] = useState<number>(0)
 
   const onDataChange = () => {
     if (isLoading) {
@@ -29,12 +31,12 @@ export default function App() {
       <div>
         <div className="top">
           <div className="video__container">
-            <VideoPlayer videoUrl={response.Film.file_url} timeToJump={300} />
+            <VideoPlayer videoUrl={response.Film.file_url} timeToJump={chapterTime} />
           </div>
           <div className="chapter__container">
             <FlatList
               data={chapterList}
-              renderItem={({ item }) => <Chapter id={item.id} title={item.title} pos={item.pos} onClick={(id) => {console.log(id)}} />}
+              renderItem={({ item }) => <Chapter id={item.id} title={item.title} pos={item.pos} onClick={(id) => setChapterTime(id)} />}
               keyExtractor={item => item.id}
             />
           </div>

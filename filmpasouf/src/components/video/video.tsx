@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface Props {
   videoUrl: string
@@ -15,6 +15,10 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
     }
   }
 
+  useEffect(() => {
+    handleJumpToTime(timeToJump)
+  }, [timeToJump])
+
   return (
     <div>
       <video
@@ -25,8 +29,6 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
         onPause={() => setIsPlaying(false)}
         width='100%'
       />
-      {/* <button onClick={() => handleJumpToTime(timeToJump)}>Go To</button>
-      {isPlaying ? <p>Video is playing</p> : <p>Video is paused</p>} */}
     </div>
   )
 }
