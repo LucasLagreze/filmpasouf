@@ -5,6 +5,7 @@ import {VideoPlayer} from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
 import MapComponent from './components/map/map';
+import ChatView from './components/chatview/chatview';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -44,6 +45,7 @@ export default function App() {
         <div>
           <MapComponent waypoint={response.Waypoints} zoom={13}/>
         </div>
+        <ChatView />
       </div>
     )
   }
