@@ -3,7 +3,7 @@ import useGetDatas from './services/getDatas'
 import VideoPlayer from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
-import MapComponent from './component/map';
+import MapComponent from './components/map';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
