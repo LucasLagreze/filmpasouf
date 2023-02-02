@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { FlatList } from 'react-native'
 import { ITypeMessage } from '../../types/ITypeMessage'
+import Message from './message'
 
 export type ChatViewProps = {
 }
@@ -23,7 +25,11 @@ export default function ChatView({}: ChatViewProps) {
     }
     return (
         <div>
-            <p>{messages.toString()}</p>
+            <FlatList
+              data={messages}
+              renderItem={({ item })=> <Message message={item} />}
+              keyExtractor={msg => msg.when.toString()}
+            />
         </div>
     )
 }
