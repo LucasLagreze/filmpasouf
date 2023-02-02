@@ -23,9 +23,10 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
         controls
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
+        width='100%'
       />
-      <button onClick={() => handleJumpToTime(timeToJump)}>Go To</button>
-      {isPlaying ? <p>Video is playing</p> : <p>Video is paused</p>}
+      {/* <button onClick={() => handleJumpToTime(timeToJump)}>Go To</button>
+      {isPlaying ? <p>Video is playing</p> : <p>Video is paused</p>} */}
     </div>
   )
 }
