@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
-import {VideoPlayer} from './components/video/video';
+import VideoPlayer from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
 import MapComponent from './components/map/map';

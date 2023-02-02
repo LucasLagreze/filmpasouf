@@ -28,4 +28,4 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
   )
 }
 
-export { VideoPlayer }
+export default VideoPlayer
