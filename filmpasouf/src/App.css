@@ -25,3 +25,21 @@
   width: 10wh; 
   height: 30vh;
 }
+.video__container {
+  width: 50vw;
+  height: 34vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chapter__container {
+  width: 48vw;
+  padding: 1vw;
+  height: 34vw;
+  overflow-y: scroll;
+}
+
+.top {
+  display: flex;
+  background-color: #222;
+}

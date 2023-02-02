@@ -1,7 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Chapter from '../../../components/chapter/Chapter'
 
-let onClick = function() {}
+let clicked = 0
+let onClick = function() {
+    clicked++
+}
 
 test("check id implementation", () => {
     render(<Chapter id={1} title={"Title."} pos={3661} onClick={onClick} />)
@@ -25,4 +28,14 @@ test("check pos implementation", () => {
     const chapterPos = screen.getByTestId("chapter__pos")
     
     expect(chapterPos).toHaveTextContent("01:01:01")
+})
+
+test("check click implementation", () => {
+    render(<Chapter id={1} title={"Title."} pos={3661} onClick={onClick} />)
+    
+    const chapter = screen.getByTestId("chapter")
+
+    fireEvent.click(chapter)
+    
+    expect(clicked).toEqual(1)
 })
