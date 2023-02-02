@@ -1,9 +1,10 @@
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
-import VideoPlayer from './component/video';
+import VideoPlayer from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
-import MapComponent from './component/map';
+import MapComponent from './components/map/map';
+import ChatView from './components/chatview/chatview';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -34,6 +35,7 @@ export default function App() {
           renderItem={({ item }) => <Chapter id={item.id} title={item.title} pos={item.pos} onClick={(id) => {console.log(id)}} />}
           keyExtractor={item => item.id}
         />
+        <ChatView />
       </div>
     )
   }
