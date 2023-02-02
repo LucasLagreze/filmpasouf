@@ -4,7 +4,7 @@ import useGetDatas from './services/getDatas'
 import VideoPlayer from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
-import MapComponent from './components/map';
+import MapComponent from './components/map/map';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -42,7 +42,7 @@ export default function App() {
           </div>
         </div>
         <div>
-          <MapComponent center={[45.1699981689, 1.5633200407]} zoom={13} />
+        <MapComponent center={[response.Waypoints[0].lat, response.Waypoints[0].lng]} zoom={13} popupText={response.Waypoints[0].label}/>
         </div>
       </div>
     )
