@@ -4,7 +4,8 @@ import useGetDatas from './services/getDatas'
 import VideoPlayer from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
-import MapComponent from './components/map';
+import MapComponent from './components/map/map';
+import ChatView from './components/chatview/chatview';
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -44,6 +45,7 @@ export default function App() {
         <div>
           <MapComponent center={[45.1699981689, 1.5633200407]} zoom={13} />
         </div>
+        <ChatView onClick={(id) => setChapterTime(id)} />
       </div>
     )
   }
