@@ -45,7 +45,7 @@ export default function App() {
         <div>
           <MapComponent center={[45.1699981689, 1.5633200407]} zoom={13} />
         </div>
-        <ChatView />
+        <ChatView onClick={(id) => setChapterTime(id)} />
       </div>
     )
   }

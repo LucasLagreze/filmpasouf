@@ -4,12 +4,13 @@ import { ITypeMessage } from '../../types/ITypeMessage'
 import Message from './message'
 
 export type ChatViewProps = {
+    onClick: (id: number) => void
 }
 
 const URL = "wss://imr3-react.herokuapp.com"
 const socket = new WebSocket(URL)
 
-export default function ChatView({}: ChatViewProps) {
+export default function ChatView({onClick}: ChatViewProps) {
     const [messages, setMessages] = useState<ITypeMessage[]>([])
 
     socket.onmessage = evt => {
@@ -28,7 +29,7 @@ export default function ChatView({}: ChatViewProps) {
             <div className="message__container">
                 <FlatList
                 data={messages.filter(msg => msg.when < 4543856000000 ).reverse()} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
-                renderItem={({ item })=> <Message message={item} />}
+                renderItem={({ item })=> <Message message={item} onClick={onClick} />}
                 keyExtractor={msg => msg.when.toString()}
                 />
             </div>
