@@ -24,12 +24,14 @@ export default function ChatView({}: ChatViewProps) {
         }).concat(messages))
     }
     return (
-        <div>
-            <FlatList
-              data={messages}
-              renderItem={({ item })=> <Message message={item} />}
-              keyExtractor={msg => msg.when.toString()}
-            />
+        <div className="chat">
+            <div className="message__container">
+                <FlatList
+                data={messages.filter(msg => msg.when < 4543856000000 ).reverse()} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
+                renderItem={({ item })=> <Message message={item} />}
+                keyExtractor={msg => msg.when.toString()}
+                />
+            </div>
         </div>
     )
 }

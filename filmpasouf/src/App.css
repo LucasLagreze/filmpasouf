@@ -40,8 +40,64 @@
   height: 34vw;
   overflow-y: scroll;
 }
+.message__container {
+  width: 48vw;
+  padding: 1vw;
+  height: 34vw;
+  overflow-y: scroll;
+}
+
+.message {
+  background-color: #555;
+  margin: 0.25rem;
+  padding: 1rem;
+  max-width: 100%;
+  border-radius: 12px;
+  color: white;
+  transition: 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.message__top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.message__name {
+  margin: 0;
+  font-weight: bold;
+}
+
+.message__when {
+  margin: 0 0 0 0.5rem;
+  color: darkgrey;
+}
+
+.message__bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.message__moment {
+  background-color: grey;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  margin: 0 0.5rem 0 0;
+}
+
+.message__message {
+  margin: 0;
+}
 
 .top {
   display: flex;
   background-color: #222;
+}
+
+.hide {
+  display: none;
 }
