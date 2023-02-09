@@ -45,7 +45,7 @@ export default function App() {
         <div>
           <MapComponent waypoint={response.Waypoints} zoom={13}/>
         </div>
-        <ChatView />
+        <ChatView onClick={(id) => setChapterTime(id)} />
       </div>
     )
   }
