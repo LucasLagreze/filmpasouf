@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
-import VideoPlayer from './components/video/video';
+import {VideoPlayer} from './components/video/video';
 import Chapter from './components/chapter/Chapter'
 import './App.css'
 import MapComponent from './components/map/map';
@@ -42,7 +42,7 @@ export default function App() {
           </div>
         </div>
         <div>
-        <MapComponent center={[response.Waypoints[0].lat, response.Waypoints[0].lng]} zoom={13} popupText={response.Waypoints[0].label}/>
+          <MapComponent waypoint={response.Waypoints} zoom={13}/>
         </div>
       </div>
     )

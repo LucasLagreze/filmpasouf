@@ -1,3 +1,5 @@
+@import url("https://unpkg.com/leaflet@1.6.0/dist/leaflet.css");
+
 .chapter {
   background-color: #555;
   margin: 0.25rem;

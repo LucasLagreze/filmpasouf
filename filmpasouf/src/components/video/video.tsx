@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react'
+import {Player} from 'video-react'
+import { VideoContext } from '../../context/VideoContext'
 
 interface Props {
   videoUrl: string
@@ -6,42 +8,24 @@ interface Props {
 }
 
 const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const {playerRef} = useContext(VideoContext)
 
   useEffect(() => {
-    if (isPlaying) {
-      const intervalId = setInterval(() => {
-        if (videoRef.current) {
-          setCurrentTime(videoRef.current.currentTime)
-        }
-      }, 1000)
-      return () => clearInterval(intervalId)
+    if (playerRef.current) {
+      playerRef.current.currentTime = timeToJump
+      console.log(playerRef.current.currentTime)
     }
-  }, [isPlaying])
-
-  const handleJumpToTime = (time: number) => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = time
-    }
-  }
+  }, [timeToJump])
 
   return (
     <div>
-      <video
-        ref={videoRef}
+      <Player
+        ref={playerRef}
+        playsInline
         src={videoUrl}
-        controls
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        width='100%'
       />
-      <button onClick={() => handleJumpToTime(timeToJump)}>Go To</button>
-      {isPlaying ? <p>Video is playing</p> : <p>Video is paused</p>}
-      <p>Current time: {currentTime} seconds</p>
     </div>
   )
 }
 
-export default VideoPlayer
+export { VideoPlayer }
