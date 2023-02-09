@@ -17,7 +17,7 @@ export default function Message({message, onClick}: MessageProps) {
                 <p className="message__when" data-testid="message__when">{date}</p>
             </div>
             <div className="message__bottom">
-                <p className={momentNodeDisplay} data-testid="message__moment" onClick={() => onClick(message.moment)}>{message.moment}</p>
+                <p className={momentNodeDisplay} data-testid="message__moment" onClick={() => onClick(message.moment)}>{Math.floor(message.moment)}</p>
                 <p className="message__message" data-testid="message__message">{message.message}</p>
             </div>
         </div>
