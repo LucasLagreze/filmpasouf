@@ -33,15 +33,15 @@ export default function ChatView({onClick}: ChatViewProps) {
 
     return (
         <div className="chat">
+            <Sender onClick={submitMessage} />
             <div className="message__container">
                 <FlatList
-                data={messages.filter(msg => msg.when < 4543856000000 )} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
-                renderItem={({ item })=> <Message message={item} onClick={onClick} />}
-                keyExtractor={msg => msg.when.toString()}
+                    data={messages.filter(msg => msg.when < 4543856000000 ).sort((a, b) => a.when - b.when).reverse()} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
+                    renderItem={({ item })=> <Message message={item} onClick={onClick} />}
+                    keyExtractor={msg => msg.when.toString()}
                 />
                 <div className="anchor"></div>
             </div>
-            <Sender onClick={submitMessage} />
         </div>
     )
 }

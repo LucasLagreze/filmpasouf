@@ -41,7 +41,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ waypoint, zoom }) => {
           </Popup>
         </Marker>
       </MapContainer>
-      <p>Current time: {currentTime} seconds</p>
     </div>
   )
 }
