@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FlatList } from 'react-native'
 import { ITypeMessage } from '../../types/ITypeMessage'
 import Message from './message'
+import Sender from './sender'
 
 export type ChatViewProps = {
     onClick: (id: number) => void
@@ -24,15 +25,23 @@ export default function ChatView({onClick}: ChatViewProps) {
             }
         }).concat(messages))
     }
+
+    const submitMessage = (msg: string) => {
+        const message = { name: "LLC", message: msg, moment: 60 }
+        socket.send(JSON.stringify(message))
+    }
+
     return (
         <div className="chat">
             <div className="message__container">
                 <FlatList
-                data={messages.filter(msg => msg.when < 4543856000000 ).reverse()} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
+                data={messages.filter(msg => msg.when < 4543856000000 )} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier
                 renderItem={({ item })=> <Message message={item} onClick={onClick} />}
                 keyExtractor={msg => msg.when.toString()}
                 />
+                <div className="anchor"></div>
             </div>
+            <Sender onClick={submitMessage} />
         </div>
     )
 }
