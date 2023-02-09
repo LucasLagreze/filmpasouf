@@ -1,11 +1,12 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Text, View, ActivityIndicator, FlatList } from 'react-native'
 import useGetDatas from './services/getDatas'
-import VideoPlayer from './components/video/video';
+import VideoPlayer from './components/video/video'
 import Chapter from './components/chapter/Chapter'
 import './App.css'
-import MapComponent from './components/map/map';
-import ChatView from './components/chatview/chatview';
+import MapComponent from './components/map/map'
+import KeywordsComponent from './components/keywords/keywords'
+import ChatView from './components/chatview/chatview'
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
@@ -33,6 +34,7 @@ export default function App() {
         <div className="top">
           <div className="video__container">
             <VideoPlayer videoUrl={response.Film.file_url} timeToJump={chapterTime} />
+            <KeywordsComponent keywords={response.Keywords}/>
           </div>
           <div className="chapter__container">
             <FlatList
@@ -44,7 +46,7 @@ export default function App() {
         </div>
         <div className="bottom">
           <div className="map__container">
-            <MapComponent waypoint={response.Waypoints} zoom={13}/>
+            <MapComponent waypoint={response.Waypoints} zoom={3}/>
           </div>
           <div className="chat__container">
             <ChatView onClick={(id) => setChapterTime(id)} />
