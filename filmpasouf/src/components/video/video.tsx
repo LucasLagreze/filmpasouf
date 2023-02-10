@@ -13,7 +13,6 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
   useEffect(() => {
     if (playerRef.current) {
       playerRef.current.currentTime = timeToJump
-      console.log(playerRef.current.currentTime)
     }
   }, [timeToJump])
 

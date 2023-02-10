@@ -27,7 +27,7 @@ export default function ChatView({onClick}: ChatViewProps) {
     }
 
     const submitMessage = (msg: string) => {
-        const message = { name: "LLC", message: msg, moment: 60 }
+        const message = { name: "Lucas & Yoann", message: msg, moment: 60 }
         socket.send(JSON.stringify(message))
     }
 
