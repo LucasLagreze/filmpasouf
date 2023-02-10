@@ -32,9 +32,11 @@ export default function App() {
     return (
       <div>
         <div className="top">
+          <div className="keywords__container">
+            <KeywordsComponent keywords={response.Keywords}/>
+          </div>
           <div className="video__container">
             <VideoPlayer videoUrl={response.Film.file_url} timeToJump={chapterTime} />
-            <KeywordsComponent keywords={response.Keywords}/>
           </div>
           <div className="chapter__container">
             <FlatList

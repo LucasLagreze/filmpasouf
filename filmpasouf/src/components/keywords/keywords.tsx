@@ -29,7 +29,7 @@ const KeywordsComponent: React.FC<KeywordsComponentProps> = ({ keywords }) => {
     const renderCurrentKeywords = () => {
         return (
             currentKeywords?.data.map((keyword: { url: string | undefined; title: boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | Key | null | undefined }) => 
-                <a href={keyword.url} target="_blank" rel="noreferrer"><li className='keywords-list-element'>{keyword.title}</li></a>
+                <a className="keyword" href={keyword.url} target="_blank" rel="noreferrer"><li className='keywords-list-element'>{keyword.title}</li></a>
             )
         )
     }
@@ -37,7 +37,6 @@ const KeywordsComponent: React.FC<KeywordsComponentProps> = ({ keywords }) => {
 
     return (
         <div>
-            <h2>Keywords</h2>
             <ul className='keywords-list'>
                 {renderCurrentKeywords()}
             </ul>

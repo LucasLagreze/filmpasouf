@@ -15,8 +15,40 @@
   height: 50vh;
 }
 
+.keywords__container {
+  width: 20vw;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keywords-list {
+  padding: 0;
+  margin: 0;
+}
+
+.keyword {
+  text-decoration: none;
+  color: white;
+}
+
+.keywords-list-element {
+  background-color: #555;
+  list-style: none;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: 250ms ease-in-out;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+.keywords-list-element:hover {
+  background-color: #777;
+}
+
 .video__container {
-  width: 50vw;
+  width: 30vw;
   height: 50vh;
   display: flex;
   align-items: center;
@@ -38,7 +70,6 @@
   bottom: 0 !important;
   margin-bottom: -12.5vh !important;
 }
- 
 
 .chapter__container {
   width: 48vw;
