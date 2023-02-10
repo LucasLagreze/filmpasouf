@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react'
 import {Player} from 'video-react'
+import "../../../node_modules/video-react/dist/video-react.css"
 import { VideoContext } from '../../context/VideoContext'
+
 
 interface Props {
   videoUrl: string
@@ -12,9 +14,10 @@ const VideoPlayer: React.FC<Props> = ({ videoUrl, timeToJump }) => {
 
   useEffect(() => {
     if (playerRef.current) {
-      playerRef.current.currentTime = timeToJump
+      playerRef.current.seek(playerRef.current.currentTime + timeToJump)
     }
   }, [timeToJump])
+
 
   return (
     <div>
