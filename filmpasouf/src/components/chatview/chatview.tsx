@@ -1,39 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FlatList } from 'react-native'
 import { ITypeMessage } from '../../types/ITypeMessage'
 import Message from './message'
 import Sender from './sender'
 
 export type ChatViewProps = {
+    messages: ITypeMessage[]
     onClick: (id: number) => void
+    onSubmit: (msg: string, moment: boolean) => void
 }
 
-const URL = "wss://imr3-react.herokuapp.com"
-const socket = new WebSocket(URL)
-
-export default function ChatView({onClick}: ChatViewProps) {
-    const [messages, setMessages] = useState<ITypeMessage[]>([])
-
-    socket.onmessage = evt => {
-        const newMessages = JSON.parse(evt.data)
-        setMessages(newMessages.map((msg: any) => {
-            return {
-                message: msg.message,
-                when: msg.when,
-                name: msg.name,
-                moment: msg.moment ? msg.moment : -1
-            }
-        }).concat(messages))
-    }
-
-    const submitMessage = (msg: string) => {
-        const message = { name: "Lucas & Yoann", message: msg, moment: 60 }
-        socket.send(JSON.stringify(message))
-    }
-
+export default function ChatView({messages, onClick, onSubmit}: ChatViewProps) {
     return (
         <div className="chat">
-            <Sender onClick={submitMessage} />
+            <Sender onClick={onSubmit} />
             <div className="message__container">
                 <FlatList
                     data={messages.filter(msg => msg.when < 4543856000000 ).sort((a, b) => a.when - b.when).reverse()} // Pour supprimer les rickroll et faire apparaître les messages les plus récents en premier

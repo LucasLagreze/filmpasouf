@@ -7,10 +7,34 @@ import './App.css'
 import MapComponent from './components/map/map'
 import KeywordsComponent from './components/keywords/keywords'
 import ChatView from './components/chatview/chatview'
+import { ITypeMessage } from './types/ITypeMessage'
+
+const URL = "wss://imr3-react.herokuapp.com"
+const socket = new WebSocket(URL)
 
 export default function App() {
   const { isLoading, error, response } = useGetDatas()
   const [chapterTime, setChapterTime] = useState<number>(0)
+  const [messages, setMessages] = useState<ITypeMessage[]>([])
+
+  socket.onmessage = evt => {
+      const newMessages = JSON.parse(evt.data)
+      setMessages(newMessages.map((msg: any) => {
+          return {
+              message: msg.message,
+              when: msg.when,
+              name: msg.name,
+              moment: msg.moment ? msg.moment : -1
+          }
+      }).concat(messages))
+  }
+
+  const submitMessage = (msg: string, moment: boolean) => {
+    let message = {}
+    if(moment) message = { name: "Lucas & Yoann", message: msg, moment: Math.floor(chapterTime) }
+    else message = { name: "Lucas & Yoann", message: msg }
+    socket.send(JSON.stringify(message))
+  }
 
   const onDataChange = () => {
     if (isLoading) {
@@ -51,7 +75,7 @@ export default function App() {
             <MapComponent waypoint={response.Waypoints} zoom={3}/>
           </div>
           <div className="chat__container">
-            <ChatView onClick={(id) => setChapterTime(id)} />
+            <ChatView messages={messages} onClick={(id) => setChapterTime(id)} onSubmit={submitMessage} />
           </div>
         </div>
       </div>

@@ -196,6 +196,12 @@
   border: navajowhite;
   border-radius: 5px;
   padding: 0.5rem 0.8rem;
+  cursor: pointer;
+}
+
+#sender__moment {
+  margin-right: 1vh;
+  cursor: pointer;
 }
 
 #sender__message {
